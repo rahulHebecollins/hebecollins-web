@@ -205,7 +205,7 @@ else if(isset($_POST['register'])){
         }
 
         echo 'You have been registered. Redirecting...';
-        header( "refresh:2; url = index.html" );
+        header( "refresh:2; url = html/signup.html" );
     }
     else{
         echo 'mysqli_prepare for insert into users failed';

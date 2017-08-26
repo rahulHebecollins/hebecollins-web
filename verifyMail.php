@@ -1,7 +1,7 @@
 <?php
 
 //mysqli_report(MYSQLI_REPORT_ALL);
-require 'conf/db_connect.php';
+require 'conf/dbConnect.php';
 if(isset($_POST['register'])){
 
     $email = htmlspecialchars($_POST['email']);
