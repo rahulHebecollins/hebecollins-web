@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hebecollins</title>
+    <style type="text/css">
+        .div-table {
+            display: table;
+            width: auto
+        ;		}
+        .div-table-row {
+            display: table-row;
+            width: auto;
+            clear: both;
+        }
+        .div-table-col {
+            float: left; /* fix for  buggy browsers */
+            width: 200px;
+            display: table-column;
+        }
+    </style>
+</head>
+
+<body>
+<div id="hebecollins" style="background-color: red;">
+
+    <div style="border: none; margin: 20px 20px 20px 20px; padding: 40px 40px 40px 40px;">
+        <header style="text-align: center;">HEBECOLLINS LOGO AND TAGLINE</header>
+    </div>
+
+    <div id="sidepanel" style="float: left;">
+
+        <form action="" method="post" autocomplete="on">
+            <div class="div-table">
+                <div class="div-table-row">
+                    <div class="div-table-col">Username: <input type="text" name="username" required></div>
+                    <div class="div-table-col">Password: <input type="password" name="password" required></div>
+                </div>
+                <div class="div-table-row">
+                    <div class="div-table-col"><input type="submit" name="login" value="Login"></div>
+                    <div class="div-table-col"><a href="">Forgot password?</a></div>
+                </div>
+            </div>
+        </form>
+
+        <br><br>
+
+        <form action="../verifyMail.php" method="post" onsubmit="return validateEmail();" autocomplete="on">
+            <div class="div-table">
+                <div class="div-table-row">
+                    <div class="div-table-col">First name:</div>
+                    <div class="div-table-col"><input type="text" name="fname" required></div>
+                </div>
+                <div class="div-table-row">
+                    <div class="div-table-col">Middle name:</div>
+                    <div class="div-table-col"><input type="text" name="mname"></div>
+                </div>
+                <div class="div-table-row">
+                    <div class="div-table-col">Last name:</div>
+                    <div class="div-table-col"><input type="text" name="lname" required></div>
+                </div>
+                <div class="div-table-row">
+                    <div class="div-table-col">Email:</div>
+                    <div class="div-table-col"><input id="email" type="text" name="email" required></div>
+                </div>
+                <div class="div-table-row">
+                    <div class="div-table-col">Gym name:</div>
+                    <div class="div-table-col"><input type="text" name="gym_name" required></div>
+                </div>
+                <div class="div-table-row">
+                    <div class="div-table-col">Date of birth:</div>
+                    <div class="div-table-col"><input type="date" name="dob" required></div>
+                </div>
+                <div class="div-table-row">
+                    <div class="div-table-col">Gender:</div>
+                    <div class="div-table-col">
+                        <input type="radio" name="gender" value="Male" required> Male
+                        <input type="radio" name="gender" value="Female" required> Female
+                        <input type="radio" name="gender" value="Other" required> Other
+                    </div>
+                </div>
+                <div class="div-table-row">
+                    <div class="div-table-col">Location:</div>
+                    <div id="address" class="div-table-col">
+                        <button onclick="getLocation();">Allow</button>
+                        <button onclick="createAddressForm();">Not allow</button>
+                    </div>
+                </div>
+                <div class="div-table-row">
+                    <div class="div-table-col"><input type="submit" name="register" value="Sign Up"></div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
+<!-- script to handle latitude and longitude access -->
+<script type="text/javascript">
+    function getLocation(){
+        if(navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showPosition);
+        }
+        else{
+            alert("Geolocation is not supported by your browser.");
+        }
+    }
+
+    function showPosition(position) {
+        var form = "<div class=\"div-table\"><div class=\"div-table-row\"><div class=\"div-table-col\">Latitude:</div><div class=\"div-table-col\"><input type=\"text\" name=\"latitude\" value=" + position.coords.latitude + " readonly></div></div><div class=\"div-table-row\"><div class=\"div-table-col\">Longitude:</div><div class=\"div-table-col\"><input type=\"text\" name=\"longitude\" value=" + position.coords.longitude + " readonly></div></div></div>";
+
+        var node = document.getElementById('address');
+        while (node.hasChildNodes()) {
+            node.removeChild(node.firstChild);
+        }
+        document.getElementById('address').innerHTML = form;
+    }
+</script>
+
+<!-- script to validate email and handle manual address input -->
+<script type="text/javascript">
+
+    var pattern = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
+
+    function validateEmail() {
+        var email = document.getElementById('email').value;
+        if(email.match(pattern) == null)
+            alert("Invalid Email!");
+        return email.match(pattern);
+    }
+
+    function createAddressForm(){
+        var form = "<div class=\"div-table\"><div class=\"div-table-row\"><div class=\"div-table-col\">Street:</div><div class=\"div-table-col\"><input type=\"text\" name=\"street\" required></div></div><div class=\"div-table-row\"><div class=\"div-table-col\">Locality:</div><div class=\"div-table-col\"><input type=\"text\" name=\"locality\" required></div></div><div class=\"div-table-row\"><div class=\"div-table-col\">City:</div><div class=\"div-table-col\"><input type=\"text\" name=\"city\" required></div></div><div class=\"div-table-row\"><div class=\"div-table-col\">PIN:</div><div class=\"div-table-col\"><input type=\"text\" name=\"pin\" required></div></div><div class=\"div-table-row\"><div class=\"div-table-col\">State:</div><div class=\"div-table-col\"><input type=\"text\" name=\"state\" required></div></div><div class=\"div-table-row\"><div class=\"div-table-col\">Country:</div><div class=\"div-table-col\"><input type=\"text\" name=\"country\" required></div></div></div>";
+
+        var node = document.getElementById('address');
+        while (node.hasChildNodes()) {
+            node.removeChild(node.firstChild);
+        }
+        document.getElementById('address').innerHTML = form;
+    }
+</script>
+</body>
+</html>
