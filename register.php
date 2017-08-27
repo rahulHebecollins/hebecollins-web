@@ -1,5 +1,5 @@
 <?php
-require 'conf/dbConnect.php';
+require 'conf/db_connect.php';
 /*this page does managers' registration after email was verified-----------------------------------------------*/
 if(isset($_GET['c'])){
     $hash = htmlspecialchars($_GET['c']);

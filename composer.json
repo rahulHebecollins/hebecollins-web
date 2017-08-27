@@ -1,0 +1,17 @@
+{
+  "autoload":{
+    "psr-4":{
+        "Toolbox\\": "app/Toolbox"
+    }
+  },
+  "require": {
+    "phpmailer/phpmailer": "~5.2",
+    "slim/slim" :"~2.0",
+    "twig/twig": "~1.0",
+    "hassankhan/config": "0.8.*",
+    "illuminate/database": "~5.0",
+    "alexgarrett/violin": "2.*",
+    "ircmaxell/random-lib": "~1.1",
+    "slim/views": "0.1.*"
+  }
+}
